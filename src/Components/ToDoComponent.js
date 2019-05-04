@@ -14,29 +14,72 @@ class ToDoComponent extends React.Component {
     };
 
     this.itemsContainer = React.createRef();
+
+    this.addRandom = this.addRandom.bind(this);
+    this.onItemRemovePress = this.onItemRemovePress.bind(this);
+    this.onItemEditPress = this.onItemEditPress.bind(this);
+    this.onItemCheckboxPress = this.onItemCheckboxPress.bind(this);
+    this.clearAll = this.clearAll.bind(this);
+
   }
+  getDoneItems() {
+    var result = 0;
+    for(var i = 0; i < this.state.items.length; i++) {
+      if(this.state.items[i].done) result++;
+    }
+    return result;
+  }
+
+  onItemCheckboxPress = (index) => {
+    var arrayAfterChange = this.state.items;
+    arrayAfterChange[index].done = !arrayAfterChange[index].done;
+    this.setState({items:arrayAfterChange})
+  }
+  onItemRemovePress = (index) => {
+    var arrayAfterChange = this.state.items;
+    arrayAfterChange.splice(index,1);
+    this.setState({items:arrayAfterChange})
+  }
+  onItemEditPress = (index) => {
+   //
+  }
+
+  clearAll() {
+    this.setState({items:[]});
+  }
+  addRandom() {
+    this.setState({
+      items: [
+        ...this.state.items,
+        {
+          text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
+          done: false
+        }
+      ]
+    })
+  }
+
   render() {
     return (
       <div className="ToDoComponent">
 
         <Card className="Panel" bg="primary">
-          <Card.Body block>
-            <Card.Title>{0 +"/" +this.state.items.length} Done</Card.Title>
+          <Card.Body>
+            <Card.Title>{this.getDoneItems() +"/" +this.state.items.length} Done</Card.Title>
             
             <div ref={this.itemsContainer} className="ItemsContainer">
-              <Item></Item>
-              <Item></Item>
-              <Item></Item>
-              <Item></Item>
-              <Item></Item>
-              <Item></Item>
-              <Item></Item>
+              {
+                this.state.items.map((item,index) => 
+                  <Item key={index} onEditPress={this.onItemEditPress} onRemovePress={this.onItemRemovePress} onCheckboxPress={this.onItemCheckboxPress} index={index} item={item}></Item>               
+                )
+              }
             </div>
 
             <div className="bottom d-flex flex-column">
               <ButtonGroup>
-                <Button variant="success">Add random</Button>
-                <Button variant="danger">Clear all</Button>
+                <Button variant="success">Add Item</Button>
+                <Button onClick={this.addRandom} variant="info">Add random</Button>
+                <Button onClick={this.clearAll} variant="danger">Clear all</Button>
               </ButtonGroup>
             </div>
 
