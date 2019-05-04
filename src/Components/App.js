@@ -1,11 +1,13 @@
 import React from 'react';
 
-import { Button } from 'react-bootstrap';
+import NavbarComponent from './NavbarComponent';
+import ToDoComponent from './ToDoComponent';
 
 function App() {
   return (
     <div className="App">
-
+      <NavbarComponent/>
+      <ToDoComponent/>
     </div>
   );
 }
