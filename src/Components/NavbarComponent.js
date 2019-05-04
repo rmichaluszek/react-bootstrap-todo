@@ -2,7 +2,6 @@ import React from 'react';
 
 import { Button, Navbar, Nav } from 'react-bootstrap';
 
-
 function NavbarComponent() {
   return (
     <div className="NavbarComponent">

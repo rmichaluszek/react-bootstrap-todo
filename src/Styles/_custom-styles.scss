@@ -22,8 +22,28 @@
             right: 0px;
             left: 0px;
             overflow-y: scroll;
-            background: rgba(190,100,0,0.1);
+            border-top: 1px solid rgba(250,0,0,0.2);
             
+            .Item {
+                width: 100%;
+                border-bottom: 1px solid rgba(250,0,0,0.2);
+
+                .Square {
+                    max-width: 50px;
+                }
+
+                .Edit {
+                    max-width: 60px;
+                    border-left: 1px solid rgba(250,0,0,0.2);
+                }
+                .Remove {
+                    border-left: 1px solid rgba(250,0,0,0.2);
+                    border-right: 1px solid rgba(250,0,0,0.2);
+                    color: red;
+                    font-weight: bold;
+                    font-size: 20px;
+                }
+            }
         }
         ::-webkit-scrollbar {
             width: 10px;
