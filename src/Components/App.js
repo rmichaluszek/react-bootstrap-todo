@@ -1,5 +1,4 @@
 import React from 'react';
-import '../Styles/App.sass';
 
 import { Button } from 'react-bootstrap';
 
